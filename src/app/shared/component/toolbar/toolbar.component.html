@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+   <mat-toolbar-row>
+      <span>Manage passwords</span>
+      <span class="spacer"></span>
+      <span>
+         <button mat-button [matMenuTriggerFor]="menu">
+           <mat-icon>more_vert</mat-icon>
+         </button>
+      </span>
+   </mat-toolbar-row>
+   <mat-toolbar-row *ngIf="isCredentialsPage()">
+      <mat-form-field style="width: 100%">
+         <mat-label>Search</mat-label>
+         <input matInput (keyup)="applyFilter($event.target.value)" class="white-text"
+                placeholder="Search specific credential">
+      </mat-form-field>
+   </mat-toolbar-row>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+   <button mat-menu-item (click)="toggleDarkTheme()">{{getThemeToToggle()}}</button>
+   <button mat-menu-item (click)="logout()" *ngIf="isLogged()">Exit</button>
+</mat-menu>

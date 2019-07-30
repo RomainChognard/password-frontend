@@ -1,0 +1,19 @@
+<form id="login-form">
+   <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Username" [(ngModel)]="loginEventModel.username" name="username">
+   </mat-form-field>
+   <br/>
+   <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" type="password" [(ngModel)]="loginEventModel.password" name="password">
+   </mat-form-field>
+   <br/>
+   <mat-form-field appearance="outline">
+      <mat-label>Master password</mat-label>
+      <input matInput placeholder="Master password" type="password" [(ngModel)]="loginEventModel.masterPassword"
+             name="masterPassword">
+   </mat-form-field>
+   <br/>
+   <button mat-raised-button (click)="login()" color="primary" id="connect_button">Connect</button>
+</form>
