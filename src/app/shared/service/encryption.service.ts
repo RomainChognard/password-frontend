@@ -20,7 +20,7 @@ export class EncryptionService {
       // get only number from string.
       // @link https://stackoverflow.com/a/10003709/128761 Reference.
       const aesNumber = encryptMethod.match(/\d+/)[0];
-      return parseInt(aesNumber);
+      return parseInt(aesNumber, 10);
    }// encryptMethodLength
 
 
@@ -34,7 +34,8 @@ export class EncryptionService {
 
 
    /**
-    * @link http://php.net/manual/en/function.openssl-get-cipher-methods.php Refer to available methods in PHP if we are working between JS & PHP encryption.
+    * @link http://php.net/manual/en/function.openssl-get-cipher-methods.php
+    * Refer to available methods in PHP if we are working between JS & PHP encryption.
     * @const string Cipher method.
     *              Recommended AES-128-CBC, AES-192-CBC, AES-256-CBC
     *              due to there is no `openssl_cipher_iv_length()` function in JavaScript
@@ -51,8 +52,6 @@ export class EncryptionService {
     * @link https://stackoverflow.com/questions/41222162/encrypt-in-php-openssl-and-decrypt-in-javascript-Crypto Reference.
     * @link https://stackoverflow.com/questions/25492179/decode-a-base64-string-using-Crypto Crypto JS base64 encode/decode reference.
     * @return string Return decrypted string.
-    * @param encryptedString
-    * @param key
     */
    decrypt(encryptedString: string, key: string) {
       const json = JSON.parse(Crypto.enc.Utf8.stringify(Crypto.enc.Base64.parse(encryptedString)));
@@ -63,7 +62,7 @@ export class EncryptionService {
       // no need to base64 decode.
       const encrypted = json.ciphertext;
 
-      let its = parseInt(json.iterations);
+      let its = parseInt(json.iterations, 10);
       if (its <= 0) {
          its = 999;
       }
@@ -76,7 +75,7 @@ export class EncryptionService {
          iterations: its
       });
 
-      const decrypted = Crypto.AES.decrypt(encrypted, hashKey, {mode: Crypto.mode.CBC, iv: iv});
+      const decrypted = Crypto.AES.decrypt(encrypted, hashKey, {mode: Crypto.mode.CBC, iv});
 
       return decrypted.toString(Crypto.enc.Utf8);
    }// decrypt
@@ -103,7 +102,7 @@ export class EncryptionService {
          iterations: its
       });
 
-      const encrypted = Crypto.AES.encrypt(value, hashKey, {mode: Crypto.mode.CBC, iv: iv});
+      const encrypted = Crypto.AES.encrypt(value, hashKey, {mode: Crypto.mode.CBC, iv});
       const encryptedString = Crypto.enc.Base64.stringify(encrypted.ciphertext);
 
       const output = {

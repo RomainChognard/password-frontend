@@ -21,7 +21,7 @@ export class CredentialPageComponent implements OnInit {
     * Used to keep track of current group id
     * Since i cannot manage how to access current MatTab content I map mat tab index -> groupId
     */
-   private _currentGroupId: number = 0;
+   private _currentGroupId = 0;
    private _groupIds = new Map<number, number>();
 
    constructor(private _credentialService: CredentialService, private _sessionService: SessionService, private _dialog: MatDialog,
