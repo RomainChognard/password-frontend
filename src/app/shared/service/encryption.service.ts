@@ -51,8 +51,6 @@ export class EncryptionService {
     * @link https://stackoverflow.com/questions/41222162/encrypt-in-php-openssl-and-decrypt-in-javascript-Crypto Reference.
     * @link https://stackoverflow.com/questions/25492179/decode-a-base64-string-using-Crypto Crypto JS base64 encode/decode reference.
     * @return string Return decrypted string.
-    * @param encryptedString
-    * @param key
     */
    decrypt(encryptedString: string, key: string) {
       const json = JSON.parse(Crypto.enc.Utf8.stringify(Crypto.enc.Base64.parse(encryptedString)));
