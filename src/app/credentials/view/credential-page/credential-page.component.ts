@@ -4,7 +4,9 @@ import {CredentialService} from '../../service/credential.service';
 import {SessionService} from '../../../shared/service/session.service';
 import {CredentialDTO} from '../../model/CredentialDTO';
 import {Observable} from 'rxjs';
-import {MatDialog, MatSnackBar, MatTabChangeEvent} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 import {CredentialDialogComponent} from '../../component/credential-dialog/credential-dialog.component';
 import {ConfirmDialogComponent} from '../../component/confirm-dialog/confirm-dialog.component';
 

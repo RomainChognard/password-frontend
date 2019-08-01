@@ -4,7 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import {SessionService} from './session.service';
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
    providedIn: 'root'

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CredentialDTO} from '../../model/CredentialDTO';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 import {ToolbarService} from '../../../shared/service/toolbar.service';
 import {Observable} from 'rxjs';
 
@@ -14,7 +15,7 @@ export class CredentialListComponent implements OnInit {
    displayedColumns: string[] = ['context', 'login', 'tsvEnabled', 'lastUpdate'];
    dataSource = new MatTableDataSource<CredentialDTO>();
 
-   @ViewChild(MatPaginator) paginator: MatPaginator;
+   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
    @Input() credentials: Observable<CredentialDTO[]> = undefined;
 

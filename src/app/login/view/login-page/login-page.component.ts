@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginService} from '../../service/login.service';
 import {LoginEventModel} from '../../component/login/LoginEventModel';
 import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {TokenDTO} from '../../model/TokenDTO';
 
 @Component({
@@ -10,12 +10,9 @@ import {TokenDTO} from '../../model/TokenDTO';
    templateUrl: './login-page.component.html',
    styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
 
    constructor(private _loginService: LoginService, private _router: Router, private _matSnackBar: MatSnackBar) {
-   }
-
-   ngOnInit() {
    }
 
    public login(loginEventDto: LoginEventModel): void {

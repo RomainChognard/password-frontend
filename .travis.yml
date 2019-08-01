@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-   - '11.15'
+   - '12.6.0'
 
 services:
    - docker
@@ -9,7 +9,7 @@ jobs:
    include:
       -  stage: install dependencies
          script:
-            - npm install -g @angular/cli@7.3.9
+            - npm install -g @angular/cli@8.2.0
             - npm install
       -  stage: test
          script: ng lint
