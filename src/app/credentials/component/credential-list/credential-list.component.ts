@@ -29,22 +29,18 @@ export class CredentialListComponent implements OnInit {
 
    ngOnInit() {
       // Set up datasource
-      this.credentials.subscribe(credentials => {
-         this.dataSource.data = credentials;
-      });
+      this.credentials.subscribe(credentials => this.dataSource.data = credentials);
 
       // Set up paginator
       this.dataSource.paginator = this.paginator;
 
       // Set up custom filter predicate
-      this.dataSource.filterPredicate = (credential: CredentialDTO, filterValue) => {
-         return credential.context.toLowerCase().includes(filterValue.toLowerCase());
-      };
+      this.dataSource.filterPredicate = (credential: CredentialDTO, filterValue) =>
+         credential.context.toLowerCase().includes(filterValue.toLowerCase());
 
       // setup filter value change listener
       this._toolbarService.filterValueChanged.subscribe(value => this.filter(value));
    }
-
 
    public filter(value: string): void {
       this.dataSource.filter = value;

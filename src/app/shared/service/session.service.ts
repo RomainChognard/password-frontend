@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
 import {HttpHeaders} from '@angular/common/http';
-import {Router} from '@angular/router';
 
 @Injectable({
    providedIn: 'root'
@@ -11,7 +10,7 @@ export class SessionService {
    private static MASTER_PASSWORD = 'masterPassword';
    private static ACESS_TOKEN = 'accessToken';
 
-   constructor(private _localStorageService: LocalStorageService, private _router: Router) {
+   constructor(private _localStorageService: LocalStorageService) {
    }
 
    public isLogged(): boolean {

@@ -1,4 +1,14 @@
-* {
-   width: 100%;
+.container {
+   display: flex;
+   flex-direction: column;
+   -webkit-flex-direction: column;
+   align-content: stretch;
+   -webkit-align-content: stretch;
    height: 100%;
+
+   .mat-app-background {
+      -webkit-flex: 1;
+      flex: 1;
+      position: relative;
+   }
 }

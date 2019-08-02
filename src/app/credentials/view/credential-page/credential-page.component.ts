@@ -102,9 +102,7 @@ export class CredentialPageComponent implements OnInit {
    }
 
    private _refreshDataSource(): void {
-      this._credentialService.getGroups().subscribe(groups => {
-         this.groups = groups;
-      });
+      this._credentialService.getGroups().subscribe(groups => this.groups = groups);
    }
 
    private _copyToClipboard(value: string): void {

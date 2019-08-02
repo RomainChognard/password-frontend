@@ -33,20 +33,16 @@ export class CredentialService {
    public decryptPassword(groupId: number, credential: CredentialDTO): Observable<string> {
       return this.httpClient.get<PasswordDTO>(environment.apiUrl + '/groups/' + groupId + '/credentials/' + credential.id + '/password',
          {headers: this._sessionService.getHttpHeaders()})
-         .pipe(map((password: PasswordDTO) => {
-            return this._encryptionService.decrypt(password.password, this._sessionService.getMasterPassword());
-         }));
+         .pipe(map((password: PasswordDTO) =>
+            this._encryptionService.decrypt(password.password, this._sessionService.getMasterPassword())
+         ));
    }
 
    private _cryptPassword(credential: CredentialDTO): CredentialDTO {
-      const cryptedCredential: CredentialDTO = {} as CredentialDTO;
-      cryptedCredential.id = credential.id;
-      cryptedCredential.context = credential.context;
-      cryptedCredential.login = credential.login;
-      cryptedCredential.password = this._encryptionService.encrypt(credential.password, this._sessionService.getMasterPassword());
-      cryptedCredential.tsvEnabled = credential.tsvEnabled;
-      cryptedCredential.lastUpdate = credential.lastUpdate;
-      return cryptedCredential;
+      return {
+         ...credential,
+         password: this._encryptionService.encrypt(credential.password, this._sessionService.getMasterPassword())
+      };
    }
 
    public createCredential(credential: CredentialDTO, groupId: number): Observable<CredentialDTO> {

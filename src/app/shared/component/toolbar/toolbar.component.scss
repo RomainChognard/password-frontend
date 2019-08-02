@@ -1,3 +1,7 @@
 .spacer {
    flex: 1 1 auto;
 }
+
+.dark-theme :host mat-toolbar {
+   background-color: lighten(#121212, 10%);
+}
