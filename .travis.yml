@@ -1,15 +1,11 @@
-language: node_js
-node_js:
-   - '12.6.0'
-
 services:
    - docker
 
 jobs:
    include:
-      -  stage: install dependencies
-         script:
-            - npm install -g @angular/cli@8.2.0
-            - npm install
-      -  stage: test
-         script: ng lint
+      -  stage: build image
+         if: branch != master
+         script: docker build . -t my-passwords-space/password-frontend
+      -  stage: build image (prod)
+         if: branch = master
+         script: docker build . -t my-passwords-space/password-frontend --build-arg build_mode=--prod
