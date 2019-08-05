@@ -16,12 +16,3 @@ jobs:
       -  stage: build image
          if: branch != master
          script: docker build . -t cloud.canister.io:5000/creekorful/password-frontend:$TRAVIS_BUILD_ID
-      -  stage: deploy image (prod)
-         if: branch = master
-         script:
-            - envsubst < src/environments/.environment.ts > src/environments/environment.prod.ts
-            - docker build . -t cloud.canister.io:5000/creekorful/password-frontend:$TRAVIS_BUILD_ID --build-arg build_mode=--prod
-            - docker tag cloud.canister.io:5000/creekorful/password-frontend:$TRAVIS_BUILD_ID cloud.canister.io:5000/creekorful/password-frontend:latest
-            - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin cloud.canister.io:5000
-            - docker push cloud.canister.io:5000/creekorful/password-frontend:$TRAVIS_BUILD_ID
-            - docker push cloud.canister.io:5000/creekorful/password-frontend:latest
