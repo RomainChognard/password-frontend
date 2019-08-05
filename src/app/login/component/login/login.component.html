@@ -1,19 +1,28 @@
-<form id="login-form">
+<form id="login-form" [formGroup]="loginForm">
    <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Username" [(ngModel)]="loginEventModel.username" name="username">
+      <input matInput placeholder="Username" name="username" formControlName="username">
+      <mat-error *ngIf="loginForm.get('username').hasError('required')">
+         Username is required
+      </mat-error>
    </mat-form-field>
    <br/>
    <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Password" type="password" [(ngModel)]="loginEventModel.password" name="password">
+      <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+      <mat-error *ngIf="loginForm.get('password').hasError('required')">
+         Password is required
+      </mat-error>
    </mat-form-field>
    <br/>
    <mat-form-field appearance="outline">
       <mat-label>Master password</mat-label>
-      <input matInput placeholder="Master password" type="password" [(ngModel)]="loginEventModel.masterPassword"
+      <input matInput placeholder="Master password" type="password" formControlName="masterPassword"
              name="masterPassword">
+      <mat-error *ngIf="loginForm.get('masterPassword').hasError('required')">
+         Master password is required
+      </mat-error>
    </mat-form-field>
    <br/>
-   <button mat-raised-button (click)="login()" color="primary" id="connect_button">Connect</button>
+   <button mat-raised-button (click)="login()" color="primary" id="connect-button">Connect</button>
 </form>

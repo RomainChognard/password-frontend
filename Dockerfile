@@ -1,6 +1,6 @@
-FROM node:11.15.0-slim as builder
+FROM node:12.7.0-buster-slim as builder
 ARG build_mode
-RUN npm install -g @angular/cli@7.3.9
+RUN npm install -g @angular/cli@8.1.3
 WORKDIR /build
 
 COPY package.json package.json

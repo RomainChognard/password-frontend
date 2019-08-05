@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginEventModel} from './LoginEventModel';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
    selector: 'app-login',
@@ -9,19 +10,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
 
-   loginEventModel: LoginEventModel = {} as LoginEventModel;
+   loginForm: FormGroup;
 
    @Output() loginEvent = new EventEmitter<LoginEventModel>();
 
    constructor(private _matSnackBar: MatSnackBar) {
    }
 
-   ngOnInit() {
+   ngOnInit(): void {
+      this.loginForm = new FormGroup({
+            username: new FormControl('', [Validators.required]),
+            password: new FormControl('', [Validators.required]),
+            masterPassword: new FormControl('', [Validators.required])
+         }
+      );
    }
 
    public login(): void {
-      if (this.loginEventModel.username !== undefined && this.loginEventModel.password !== undefined) {
-         this.loginEvent.emit(this.loginEventModel);
+      if (this.loginForm.valid) {
+         this.loginEvent.emit(this.loginForm.value);
       } else {
          this._matSnackBar.open('Username / password cannot be empty', 'Close', {duration: 2500});
       }

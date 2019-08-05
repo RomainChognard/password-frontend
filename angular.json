@@ -63,7 +63,8 @@
             "serve": {
                "builder": "@angular-devkit/build-angular:dev-server",
                "options": {
-                  "browserTarget": "password-frontend:build"
+                  "browserTarget": "password-frontend:build",
+                  "aot": true
                },
                "configurations": {
                   "production": {

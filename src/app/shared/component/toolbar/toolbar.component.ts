@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToolbarService} from '../../service/toolbar.service';
 import {SessionService} from '../../service/session.service';
@@ -9,13 +9,10 @@ import {ThemeService} from '../../service/theme.service';
    templateUrl: './toolbar.component.html',
    styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
    constructor(private _router: Router, private _toolbarService: ToolbarService,
                private _sessionService: SessionService, private _themeService: ThemeService) {
-   }
-
-   ngOnInit() {
    }
 
    isCredentialsPage(): boolean {

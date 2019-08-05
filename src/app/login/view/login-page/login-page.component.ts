@@ -16,7 +16,7 @@ export class LoginPageComponent {
    }
 
    public login(loginEventDto: LoginEventModel): void {
-      this._loginService.login(loginEventDto).subscribe((token: TokenDTO) => {
+      this._loginService.login(loginEventDto).subscribe((token: TokenDTO) =>
          this._loginService.validateMasterPassword(token.testHash, loginEventDto.masterPassword).subscribe(value => {
             if (value) {
                this._loginService.handleLogin(token, loginEventDto.masterPassword);
@@ -24,7 +24,7 @@ export class LoginPageComponent {
             } else {
                this._matSnackBar.open('Invalid master password', 'Ok', {duration: 2500});
             }
-         });
-      });
+         })
+      );
    }
 }
