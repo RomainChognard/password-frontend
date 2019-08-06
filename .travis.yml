@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-   - '12.6.0'
+   - '12.7.0'
 
 services:
    - docker
@@ -9,7 +9,10 @@ jobs:
    include:
       -  stage: install dependencies
          script:
-            - npm install -g @angular/cli@8.2.0
+            - npm install -g @angular/cli@7.3.9
             - npm install
-      -  stage: test
+      -  stage: lint
          script: ng lint
+      -  stage: build image
+         if: branch != master
+         script: docker build . -t cloud.canister.io:5000/creekorful/password-frontend:$TRAVIS_BUILD_ID
